@@ -203,6 +203,30 @@
             justify-content: space-between;
             height: 100%;
         }
+
+        /* EDITORIAL LIST STYLING */
+        .editorial-list {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: editorial-counter;
+        }
+        .editorial-list li {
+            position: relative;
+            padding-left: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .editorial-list li::before {
+            counter-increment: editorial-counter;
+            content: "0" counter(editorial-counter);
+            position: absolute;
+            left: 0;
+            top: -0.25rem;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 2.5rem;
+            line-height: 1;
+            color: rgba(17,17,17,0.1);
+        }
     </style>
 </head>
 <body class="">
@@ -241,7 +265,7 @@
             <!-- Why people choose Noena -->
             <section class="py-12">
                 <h2 class="text-center mb-6 h2-style">Why people choose Noena</h2>
-                <ul class="space-y-4">
+                <ul class="editorial-list">
                     <li>Visible hair reduction over a course of sessions (varies by hair/skin type).</li>
                     <li>Cooling tip minimizes discomfort for most clients.</li>
                     <li>One steady hand: all sessions performed by our specialist, <strong>Tuğcan Çiriş</strong>.</li>
