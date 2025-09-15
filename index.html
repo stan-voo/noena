@@ -198,7 +198,10 @@
             width: 100%;
             max-width: 420px;
             padding: clamp(16px, 5vw, 24px);
-            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
     </style>
 </head>
@@ -214,19 +217,23 @@
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <img src="/assets/img/noena-logo-wordmark-cropped.svg" alt="NOENA" style="height: 32px; width: auto;" class="mb-4">
-                <h1 class="mt-4">Meet your last laser.</h1>
-                
-                <div class="mt-6">
-                    <div style="width: 100%; height: 1px; background-color: rgba(255,255,255,0.2);"></div>
-                    <div class="my-4">
-                        <p class="inline-block text-white uppercase" style="background-color: transparent; border: 1px solid white; font-size: 12px; line-height: 1.2; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 9999px; font-weight: 600;">LAUNCH OFFER</p>
-                        <p class="text-white mt-3 text-offer-value">30% OFF FIRST VISIT</p>
-                    </div>
+                <div>
+                    <img src="/assets/img/noena-logo-wordmark-cropped.svg" alt="NOENA" style="height: 32px; width: auto;" class="mb-4">
+                    <h1 class="mt-4">Meet your last laser.</h1>
                 </div>
-
-                <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;">WhatsApp'tan Ulaşın</a>
-                <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Mention <strong>NOENA30</strong> to claim your discount</p>
+                
+                <div>
+                    <div class="mt-6">
+                        <div style="width: 100%; height: 1px; background-color: rgba(255,255,255,0.2);"></div>
+                        <div class="my-4">
+                            <p class="inline-block text-white uppercase" style="background-color: transparent; border: 1px solid white; font-size: 12px; line-height: 1.2; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 9999px; font-weight: 600;">LAUNCH OFFER</p>
+                            <p class="text-white mt-3 text-offer-value">30% OFF FIRST VISIT</p>
+                        </div>
+                    </div>
+    
+                    <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;">WhatsApp'tan Ulaşın</a>
+                    <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Mention <strong>NOENA30</strong> to claim your discount</p>
+                </div>
             </div>
         </section>
 
