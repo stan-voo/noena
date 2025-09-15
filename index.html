@@ -111,6 +111,9 @@
             --font-serif: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
             --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
         }
+        html {
+            -webkit-text-size-adjust: 100%; /* Prevent iOS font scaling */
+        }
         body {
             background-color: var(--color-bg);
             color: var(--color-text);
@@ -121,23 +124,24 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        h1, h2, .h2-style {
+        h1 {
             font-family: var(--font-serif);
             font-weight: 700;
-            letter-spacing: -0.005em;
-        }
-        h1 {
-            font-size: clamp(28px, 8.5vw, 34px);
+            font-size: clamp(30px, 9vw, 38px);
             line-height: 1.15;
             letter-spacing: -0.015em;
         }
         h2, .h2-style {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            letter-spacing: -0.005em;
             font-size: clamp(22px, 6.2vw, 26px);
             line-height: 1.20;
         }
         .text-micro {
             font-size: clamp(12px, 3.2vw, 13px);
             line-height: 1.38;
+            letter-spacing: 0.02em;
             color: var(--color-muted);
         }
 
@@ -153,9 +157,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 85vh;
-            height: 100vh;
-            max-height: 780px;
+            height: 76dvh;
+            max-height: 760px;
             overflow: hidden;
             color: white;
         }
@@ -174,7 +177,7 @@
             height: 100%;
         }
         .hero-overlay {
-            background: linear-gradient(to top, rgba(17,17,17,0.55) 0%, transparent 35%);
+            background: linear-gradient(to top, rgba(17,17,17,0.7) 0%, transparent 40%);
             z-index: 10;
         }
         .hero-content {
@@ -201,18 +204,17 @@
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <img src="/assets/img/noena-logo-wordmark-cropped.svg" alt="NOENA" style="height: 22px; width: auto;" class="mb-4">
-                <p class="uppercase text-micro" style="letter-spacing: 0.08em; color: rgba(255,255,255,0.8);">NOENA · LASER STUDIO</p>
                 <h1 class="mt-4">Meet your last laser.</h1>
                 
                 <div class="mt-6">
                     <div style="width: 100%; height: 1px; background-color: rgba(255,255,255,0.2);"></div>
-                    <div class="text-center my-4">
-                        <p class="inline-block text-white font-semibold uppercase" style="background-color: var(--color-accent); font-size: clamp(11px, 3vw, 12px); line-height: 1.2; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 9999px;">LAUNCH OFFER</p>
-                        <p class="font-serif font-bold mt-3" style="font-size: clamp(19px, 6vw, 22px); line-height: 1.2; letter-spacing: -0.005em;">30% OFF FIRST VISIT</p>
+                    <div class="my-4">
+                        <p class="inline-block text-white font-semibold uppercase" style="background-color: var(--color-accent); font-size: 12px; line-height: 1.2; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 9999px; font-weight: 600;">LAUNCH OFFER</p>
+                        <p class="font-semibold text-white mt-3" style="font-size: clamp(24px, 7vw, 26px); line-height: 1.2; letter-spacing: -0.01em; font-weight: 600;">30% OFF FIRST VISIT</p>
                     </div>
                 </div>
 
-                <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white font-semibold" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(16px, 4.8vw, 17px); letter-spacing: 0.01em;">WhatsApp'tan Ulaşın</a>
+                <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white font-semibold uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;">WhatsApp'tan Ulaşın</a>
                 <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Mention <strong>NOENA30</strong> to claim your discount</p>
             </div>
         </section>
