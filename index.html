@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noena - Professional Services</title>
+    <meta name="description" content="Your one-stop solution for professional services. Contact us today!">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://noena.example.com/">
+    <meta property="og:title" content="Noena - Professional Services">
+    <meta property="og:description" content="Your one-stop solution for professional services. Contact us today!">
+    <meta property="og:image" content="https://noena.example.com/assets/img/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://noena.example.com/">
+    <meta property="twitter:title" content="Noena - Professional Services">
+    <meta property="twitter:description" content="Your one-stop solution for professional services. Contact us today!">
+    <meta property="twitter:image" content="https://noena.example.com/assets/img/og-image.png">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Noena",
+      "image": "https://noena.example.com/assets/img/logo.png",
+      "@id": "",
+      "url": "https://noena.example.com/",
+      "telephone": "+1234567890",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Main St",
+        "addressLocality": "Anytown",
+        "addressRegion": "CA",
+        "postalCode": "12345",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.052235,
+        "longitude": -118.243683
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      } 
+    }
+    </script>
+
+    <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 text-base" style="line-height: 1.5;">
+    <main class="container mx-auto max-w-md p-4">
+        <!-- Header -->
+        <header class="text-center py-8">
+            <h1 class="text-2xl font-bold">Logo</h1>
+        </header>
+
+        <!-- Value Props / Proof -->
+        <section class="py-8">
+            <div class="text-center mb-8">
+                <h2 class="text-xl font-semibold">Value Prop 1</h2>
+                <p class="mt-2 text-lg">A compelling reason to choose us.</p>
+            </div>
+            <div class="text-center">
+                <h2 class="text-xl font-semibold">Value Prop 2</h2>
+                <p class="mt-2 text-lg">Another great reason to work with us.</p>
+            </div>
+            <div class="mt-12 text-center p-4 bg-gray-100 rounded-lg">
+                <p class="italic">"This is a testimonial from a happy customer. They loved our service."</p>
+                <p class="mt-2 font-semibold">- Satisfied Client</p>
+            </div>
+        </section>
+
+        <!-- Primary CTA -->
+        <section class="py-8 text-center">
+            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" onclick="fbq('track', 'Contact');" class="bg-green-500 text-white font-bold py-4 px-8 rounded-full text-xl">WhatsApp Us</a>
+            <div class="mt-4">
+                <a href="#" class="text-gray-600 underline">Call us</a>
+                <span class="mx-2 text-gray-400">|</span>
+                <a href="#" class="text-gray-600 underline">Book Online</a>
+            </div>
+        </section>
+
+        <!-- Equipment / Certs -->
+        <section class="py-8">
+            <h2 class="text-center text-xl font-semibold mb-6">Our Equipment & Certifications</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gray-200 h-32 rounded-lg"></div>
+                <div class="bg-gray-200 h-32 rounded-lg"></div>
+                <div class="bg-gray-200 h-32 rounded-lg"></div>
+                <div class="bg-gray-200 h-32 rounded-lg"></div>
+            </div>
+        </section>
+
+        <!-- Socials -->
+        <section class="py-8 text-center">
+            <h2 class="text-xl font-semibold mb-4">Follow Us</h2>
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="text-gray-600">Facebook</a>
+                <a href="#" class="text-gray-600">Instagram</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-sm text-gray-500">
+            <p>&copy; 2025 Noena. All rights reserved.</p>
+        </footer>
+    </main>
+</body>
+</html>
