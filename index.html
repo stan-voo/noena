@@ -136,33 +136,6 @@
             width: 100%;
             height: 100%;
         }
-        #hero h1 {
-            text-transform: uppercase;
-            letter-spacing: -0.05em;
-            font-size: clamp(2.5rem, 9vw, 3rem);
-            line-height: 1.1;
-        }
-        .offer-block {
-            position: relative;
-            padding-top: 2.5rem;
-            padding-bottom: 2.5rem;
-        }
-        .offer-block::before,
-        .offer-block::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        .offer-block::before {
-            top: 1rem;
-        }
-        .offer-block::after {
-            bottom: 1rem;
-        }
         .hero-overlay {
             background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
             z-index: 10;
@@ -199,11 +172,11 @@
                     <h1 class="text-4xl font-bold">Meet your last laser.</h1>
                     
                     <!-- Offer Block -->
-                    <div class="offer-block border-2 border-dashed border-red-300 bg-white/20 p-4 rounded-lg my-6 backdrop-blur-sm">
-                        <p class="inline-block bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">LAUNCH OFFER</p>
+                    <div class="border-2 border-dashed border-red-300 bg-white/20 p-4 rounded-lg my-6 backdrop-blur-sm">
+                        <p class="inline-block bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full mb-4">LAUNCH OFFER</p>
                         <h2 class="text-3xl font-extrabold text-white">30% OFF FIRST VISIT</h2>
                         <p class="mt-2 text-gray-200">New clients · Selected zones · Bayraklı/İzmir</p>
-                        <p class="mt-4 text-gray-200">Valid until 31 Oct 2025 · Use code: <strong class="border border-white/30 bg-white/10 px-2 py-1 rounded">NOENA30</strong></p>
+                        <p class="mt-4 text-gray-200">Valid until 31 Oct 2025 · Use code: <strong class="bg-gray-800/50 px-2 py-1 rounded">NOENA30</strong></p>
                     </div>
     
                     <!-- Primary CTA -->
