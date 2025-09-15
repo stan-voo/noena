@@ -20,7 +20,8 @@
     <meta property="twitter:description" content="Kalıcı ve konforlu lazer epilasyon. Uzmanımız Tugcan ile pürüzsüz bir cilde kavuşun.">
     <meta property="twitter:image" content="https://noena.example.com/assets/img/og-image.png">
 
-    <link rel="preload" href="/assets/img/hero-pit-s1-1080.avif" as="image" type="image/avif" fetchpriority="high">
+    <!-- Font Preload -->
+    <link rel="preload" href="/assets/fonts/instrument-serif-vf.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -85,38 +86,73 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* FONT SETUP */
+        @font-face {
+            font-family: 'Instrument Serif';
+            src: url('/assets/fonts/instrument-serif-vf.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: url('/assets/fonts/inter-vf.woff2') format('woff2-variations');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* DESIGN TOKENS & BASE STYLES */
+        :root {
+            --color-bg: #FAFAFA;
+            --color-text: #111111;
+            --color-muted: #6B7280;
+            --color-accent: #4F46E5;
+            --font-serif: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-sans);
+            font-size: clamp(16px, 4.5vw, 17px);
+            line-height: 1.55;
+            font-feature-settings: 'liga' on, 'kern' on;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        #logo {
-            width: 180px;
-            height: auto;
-            margin: 0 auto;
+        h1, h2, .h2-style {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            letter-spacing: -0.005em;
         }
-        .checklist {
-            list-style: none;
-            padding-left: 0;
+        h1 {
+            font-size: clamp(28px, 8.5vw, 34px);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
         }
-        .checklist li {
-            position: relative;
-            padding-left: 2.5rem;
-            line-height: 1.6;
+        h2, .h2-style {
+            font-size: clamp(22px, 6.2vw, 26px);
+            line-height: 1.20;
         }
-        .checklist li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.25rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="%234ade80"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
+        .text-micro {
+            font-size: clamp(12px, 3.2vw, 13px);
+            line-height: 1.38;
+            color: var(--color-muted);
         }
+
+        /* LAYOUT */
+        .content-wrapper {
+            padding-left: clamp(16px, 5vw, 24px);
+            padding-right: clamp(16px, 5vw, 24px);
+        }
+
+        /* HERO SECTION */
         #hero {
             position: relative;
-            display: grid;
-            place-items: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             min-height: 85vh;
             height: 100vh;
             max-height: 780px;
@@ -129,6 +165,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            pointer-events: none;
         }
         .hero-media img {
             object-fit: cover;
@@ -137,123 +174,100 @@
             height: 100%;
         }
         .hero-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
+            background: linear-gradient(to top, rgba(17,17,17,0.55) 0%, transparent 35%);
             z-index: 10;
-            pointer-events: none;
         }
         .hero-content {
             position: relative;
             z-index: 20;
-            text-align: center;
-            padding: 1rem;
-            padding-top: 4rem; /* space for logo */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Vertically centers the content */
-            height: 100%;
+            text-align: left;
+            width: 100%;
+            max-width: 420px;
+            padding: clamp(16px, 5vw, 24px);
+            margin-top: auto; /* Pushes content to the bottom */
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 text-base" style="line-height: 1.5;">
-    <main class="container mx-auto max-w-md p-0">
+<body class="text-base">
+    <main class="mx-auto">
         <!-- Hero Section -->
         <section id="hero">
             <div class="hero-media">
                 <picture>
                     <source type="image/avif" srcset="/assets/img/hero-pit-s1-720.avif 720w, /assets/img/hero-pit-s1-1080.avif 1080w" sizes="(max-width: 720px) 100vw, 1080px">
-                    <!-- Add WebP and JPEG fallbacks here if you create them -->
                     <img src="/assets/img/hero-pit-s1-1080.avif" alt="Close-up of underarm after professional laser hair removal, with soft lighting." width="1080" height="1350" fetchpriority="high" loading="eager" decoding="async">
                 </picture>
             </div>
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <div> <!-- This extra div helps group the content at the bottom -->
-                    <img src="/assets/img/noena-logo-wordmark-cropped.svg" alt="NOENA" id="logo" class="mb-4">
-                    <h1 class="text-4xl font-bold">Meet your last laser.</h1>
-                    
-                    <!-- Offer Block -->
-                    <div class="border-2 border-dashed border-red-300 bg-white/20 p-4 rounded-lg my-6 backdrop-blur-sm">
-                        <p class="inline-block bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full mb-4">LAUNCH OFFER</p>
-                        <h2 class="text-3xl font-extrabold text-white">30% OFF FIRST VISIT</h2>
-                        <p class="mt-2 text-gray-200">New clients · Selected zones · Bayraklı/İzmir</p>
-                        <p class="mt-4 text-gray-200">Valid until 31 Oct 2025 · Use code: <strong class="bg-gray-800/50 px-2 py-1 rounded">NOENA30</strong></p>
+                <img src="/assets/img/noena-logo-wordmark-cropped.svg" alt="NOENA" style="height: 22px; width: auto;" class="mb-4">
+                <p class="uppercase text-micro" style="letter-spacing: 0.08em; color: rgba(255,255,255,0.8);">NOENA · LASER STUDIO</p>
+                <h1 class="mt-4">Meet your last laser.</h1>
+                
+                <div class="mt-6">
+                    <div style="width: 100%; height: 1px; background-color: rgba(255,255,255,0.2);"></div>
+                    <div class="text-center my-4">
+                        <p class="inline-block text-white font-semibold uppercase" style="background-color: var(--color-accent); font-size: clamp(11px, 3vw, 12px); line-height: 1.2; letter-spacing: 0.08em; padding: 6px 12px; border-radius: 9999px;">LAUNCH OFFER</p>
+                        <p class="font-serif font-bold mt-3" style="font-size: clamp(19px, 6vw, 22px); line-height: 1.2; letter-spacing: -0.005em;">30% OFF FIRST VISIT</p>
                     </div>
-    
-                    <!-- Primary CTA -->
-                    <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="bg-green-500 text-white font-bold py-4 px-8 rounded-full text-xl inline-block">WhatsApp'tan Ulaşın</a>
-                    <p class="mt-4 text-gray-200">Mention <strong>NOENA30</strong> in WhatsApp</p>
                 </div>
+
+                <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white font-semibold" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(16px, 4.8vw, 17px); letter-spacing: 0.01em;">WhatsApp'tan Ulaşın</a>
+                <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Mention <strong>NOENA30</strong> to claim your discount</p>
             </div>
         </section>
 
-        <!-- Compact Micro-proofs -->
-        <section class="py-8 text-center px-4">
-            <p class="text-gray-700">Fast sessions · Cooling tip minimizes discomfort · One specialist: <strong>Tuğcan Çiriş</strong></p>
-        </section>
+        <div class="content-wrapper">
+            <!-- Why people choose Noena -->
+            <section class="py-12">
+                <h2 class="text-center mb-6">Why people choose Noena</h2>
+                <ul class="checklist space-y-4">
+                    <li>Visible hair reduction over a course of sessions (varies by hair/skin type).</li>
+                    <li>Cooling tip minimizes discomfort for most clients.</li>
+                    <li>One steady hand: all sessions performed by our specialist, <strong>Tuğcan Çiriş</strong>.</li>
+                </ul>
+            </section>
 
-        <!-- Divider -->
-        <hr class="my-4">
-
-        <!-- Why people choose Noena -->
-        <section class="py-8 px-4">
-            <h2 class="text-center text-2xl font-semibold mb-6">Why people choose Noena</h2>
-            <ul class="checklist space-y-4 text-lg">
-                <li>Visible hair reduction over a course of sessions (varies by hair/skin type).</li>
-                <li>Cooling tip minimizes discomfort for most clients.</li>
-                <li>One steady hand: all sessions performed by our specialist, <strong>Tugcan</strong>.</li>
-            </ul>
-        </section>
-
-        <!-- Our Specialist -->
-        <section class="py-8 bg-gray-50 rounded-lg">
-            <div class="flex flex-col md:flex-row items-center p-6 gap-6">
-                <!-- Text Content -->
-                <div class="md:w-2/3 text-center md:text-left">
-                    <h2 class="text-2xl font-semibold">Our Specialist</h2>
-                    <p class="mt-4 text-lg"><strong>Tuğcan Çiriş</strong> — certified beauty specialist focused on laser hair removal and consistent technique, session after session.</p>
+            <!-- Our Specialist -->
+            <section class="py-12 bg-gray-100 rounded-lg">
+                <div class="flex flex-col md:flex-row items-center p-6 gap-6">
+                    <div class="md:w-2/3 text-center md:text-left">
+                        <h2 class="h2-style">Our Specialist</h2>
+                        <p class="mt-4"><strong>Tuğcan Çiriş</strong> — certified beauty specialist focused on laser hair removal and consistent technique, session after session.</p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                         <img src="/assets/img/tugcan-avatar.png" alt="Tugcan - Specialist" class="rounded-lg shadow-md max-w-full h-auto w-48">
+                    </div>
                 </div>
-                <!-- Image -->
-                <div class="md:w-1/3 flex justify-center">
-                     <img src="/assets/img/tugcan-avatar.png" alt="Tugcan - Specialist" class="rounded-lg shadow-md max-w-full h-auto w-48">
+            </section>
+
+            <!-- Equipment & Credentials -->
+            <section class="py-12">
+                <h2 class="text-center mb-6">Equipment & Credentials</h2>
+                <div class="space-y-4">
+                    <p><strong>Equipment:</strong> clinic-grade diode laser with integrated cooling for comfort and precision.</p>
+                    <p><strong>Credentials:</strong> MEB-approved professional certifications and strict hygiene protocols.</p>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Equipment & Credentials -->
-        <section class="py-8 px-4">
-            <h2 class="text-center text-2xl font-semibold mb-6">Equipment & Credentials</h2>
-            <div class="space-y-4 text-lg">
-                <p><strong>Equipment:</strong> clinic-grade diode laser with integrated cooling for comfort and precision.</p>
-                <p><strong>Credentials:</strong> MEB-approved professional certifications and strict hygiene protocols.</p>
-            </div>
-        </section>
-
-        <!-- Secondary CTA -->
-        <section class="py-8 text-center px-4">
-            <h2 class="text-2xl font-semibold mb-4">Randevu için ⬇️</h2>
-            <a href="https://wa.me/+905303407443" onclick="fbq('track', 'Contact');" class="bg-green-500 text-white font-bold py-4 px-8 rounded-full text-xl inline-block">WhatsApp'tan Ulaşın</a>
-            <p class="mt-4 text-gray-700">Mention <strong>NOENA30</strong> to claim your first-visit discount.</p>
-        </section>
-
-        <!-- Socials -->
-        <section class="py-8 text-center px-4">
-            <h2 class="text-2xl font-semibold mb-4">Follow us</h2>
-            <div class="flex justify-center space-x-4">
-                <a href="https://www.instagram.com/noena.tr/" target="_blank" rel="noopener noreferrer" class="text-gray-600 text-lg">Instagram</a>
-            </div>
-        </section>
+            <!-- Socials -->
+            <section class="py-12 text-center">
+                <h2 class="mb-4">Follow us</h2>
+                <a href="https://www.instagram.com/noena.tr/" target="_blank" rel="noopener noreferrer" class="text-lg">Instagram</a>
+            </section>
+        </div>
 
         <!-- Footer -->
-        <footer class="text-center py-8 text-sm text-gray-600 px-4">
+        <footer class="text-center py-8 text-micro content-wrapper">
             <p><strong>Address:</strong> Mansuroğlu Mah. 288/6 Sok. No:10, Bayraklı/İzmir, İzmir, Turkey 35530</p>
             <p class="mt-2"><strong>Hours:</strong> Randevu ile (by appointment)</p>
             
-            <div class="mt-6 text-xs text-gray-500">
+            <div class="mt-6">
                 <h4 class="font-bold mb-2">Terms & Conditions</h4>
                 <p>New clients only. Applies to first session on a single selected zone; packages excluded. Not combinable with other promos. Must mention <strong>NOENA30</strong> when booking via WhatsApp. Limited daily spots; management reserves the right to close the offer early. Valid until <strong>31 Oct 2025</strong>.</p>
             </div>
 
-            <p class="mt-6 text-xs text-gray-500">NOENA EPİLASYON VE GÜZELLİK MERKEZİ LİMİTED ŞİRKETİ</p>
+            <p class="mt-6">NOENA EPİLASYON VE GÜZELLİK MERKEZİ LİMİTED ŞİRKETİ</p>
         </footer>
     </main>
 </body>
