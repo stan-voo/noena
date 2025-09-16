@@ -243,6 +243,25 @@
             top: 0;
             color: var(--color-accent);
         }
+        .credentials-container {
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .credentials-container::after {
+            content: '';
+            background-image: url('/assets/img/noena_document_wavefade_round.png2.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            right: -40px;
+            width: 150px;
+            height: 200px;
+            transform: translateY(-50%) rotate(25deg);
+            opacity: 0.05;
+            z-index: -1;
+        }
     </style>
 </head>
 <body class="">
@@ -300,7 +319,7 @@
                          <img src="/assets/img/tugcan-avatar.png" alt="Tugcan - Specialist" class="rounded-lg shadow-md max-w-full h-auto w-48">
                     </div>
                 </div>
-                <div class="p-6">
+                <div class="p-6 credentials-container">
                     <p><strong>Credentials:</strong></p>
                     <ul class="credential-list mt-2">
                         <li>Certified Beauty Specialist (<strong>826 hours</strong>) – İstanbul Ataşehir Özel Dilan Polat Academy</li>
