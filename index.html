@@ -227,6 +227,22 @@
             line-height: 1;
             color: rgba(17,17,17,0.1);
         }
+        .credential-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .credential-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .credential-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--color-accent);
+        }
     </style>
 </head>
 <body class="">
@@ -291,7 +307,17 @@
                 <h2 class="text-center mb-6 h2-style">Equipment & Credentials</h2>
                 <div class="space-y-4">
                     <p><strong>Equipment:</strong> clinic-grade diode laser with integrated cooling for comfort and precision.</p>
-                    <p><strong>Credentials:</strong> MEB-approved professional certifications and strict hygiene protocols.</p>
+                    <div>
+                        <p><strong>Credentials:</strong></p>
+                        <ul class="credential-list mt-2">
+                            <li>Certified Beauty Specialist (826 hours) – İstanbul Ataşehir Özel Dilan Polat Academy</li>
+                            <li>Skin Care & Makeup Certificate – Bayraklı Nuri Atik Vocational & Technical High School</li>
+                            <li>Mastership & Workplace Opening Certificate – Nene Hatun Vocational Training Center</li>
+                            <li>Instructor Orientation Program – Gaziemir Public Education Center</li>
+                            <li>Hygiene Training for Beauty & Hair Care Professionals – Gaziemir Public Education Center</li>
+                            <li>Occupational Health & Safety Certificate – Gaziemir Public Education Center</li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
@@ -376,7 +402,7 @@
 
         <!-- Footer -->
         <footer class="text-center py-8 text-micro content-wrapper">
-            <p class="mt-6">NOENA EPİLASYON VE GÜZELLİK MERKEZİ LİMİTED ŞİRKETİ</p>
+            <p class="mt-6">&copy; 2025 NOENA EPİLASYON VE GÜZELLİK MERKEZİ LİMİTED ŞİRKETİ</p>
         </footer>
     </main>
 </body>
