@@ -303,7 +303,7 @@
                         </div>
                     </div>
     
-                    <a id="wa-cta" data-role="whatsapp-cta" href="#" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;" aria-label="WhatsApp’tan randevu al">WhatsApp’ta Randevu Al</a>
+                    <a id="wa-cta" data-role="whatsapp-cta" data-whatsapp-context="appointment" href="#" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;" aria-label="WhatsApp’tan randevu al">WhatsApp’ta Randevu Al</a>
                     <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Haftada <strong>6 promosyon randevusu</strong> — yerler dolmadan ayırtın.</p>                </div>
             </div>
         </section>
@@ -415,7 +415,7 @@
                 <h2 class="text-center mb-6 h2-style">Fiyat Listesi</h2>
                 <p>
      Hazır değil misiniz?
-     <a data-role="whatsapp-cta" href="#" class="underline underline-offset-2 hover:opacity-80" aria-label="WhatsApp — fiyat listesi PDF iste" data-evt="price_pdf_click" style="color: var(--color-text);">
+     <a data-role="whatsapp-cta" data-whatsapp-context="pricelist" href="#" class="underline underline-offset-2 hover:opacity-80" aria-label="WhatsApp — fiyat listesi PDF iste" data-evt="price_pdf_click" style="color: var(--color-text);">
        WhatsApp’tan fiyat listesi PDF isteyin.
      </a>
    </p>
@@ -441,6 +441,12 @@
         </footer>
     </main>
 <script>
+/*
+ * This script dynamically builds WhatsApp CTA links with pre-filled messages.
+ * It captures UTM parameters from the URL on the first visit of a session,
+ * stores them in sessionStorage, and appends them to the WhatsApp message
+ * for tracking purposes. It also customizes the message based on the button's context.
+ */
 (function () {
   const PHONE_TR = "905303407443"; // WhatsApp phone (no '+')
 
@@ -472,10 +478,21 @@
   }
 
   // 4) Build a Turkish prefilled message that embeds UTMs
-  function buildMessage(utm) {
-    // Core message (TR)
-    let msg = "Merhaba Noena, randevu ve fiyat bilgisi rica ederim. ";
-    msg += "Konu: Koltukaltı ilk seans %30 indirim.";
+  function buildMessage(utm, context) {
+    let msg;
+    const appointmentMessage = "Merhaba Noena, randevu ve fiyat bilgisi rica ederim.\n" +
+                               "Kısa not: Kaynak bilgisi randevumu daha hızlı eşleştirmeniz içindir; lütfen silmeyiniz.\n" +
+                               "Konu: Koltukaltı ilk seans %30 indirim.";
+    const priceListMessage = "Merhaba Noena, fiyat listesi PDF’sini paylaşır mısınız?";
+    const defaultMessage = "Merhaba Noena, randevu ve fiyat bilgisi rica ederim.";
+
+    if (context === 'appointment') {
+        msg = appointmentMessage;
+    } else if (context === 'pricelist') {
+        msg = priceListMessage;
+    } else {
+        msg = defaultMessage;
+    }
 
     // Append UTMs if present so team sees source on WhatsApp
     const parts = [];
@@ -506,12 +523,13 @@
   // 6) Apply to any CTA(s)
   function applyToCTAs() {
     const utm = getUTM();
-    const text = buildMessage(utm);
-    const href = buildWaLink(PHONE_TR, text);
 
     // All elements with role
     const anchors = document.querySelectorAll('[data-role="whatsapp-cta"]');
     anchors.forEach(a => {
+      const context = a.getAttribute('data-whatsapp-context') || 'default';
+      const text = buildMessage(utm, context);
+      const href = buildWaLink(PHONE_TR, text);
       a.setAttribute("href", href);
       a.setAttribute("rel", "noopener");
       a.setAttribute("target", "_blank"); // optional: open in new tab
@@ -519,11 +537,5 @@
   }
 
   // Init
-  document.readyState === "loading"
-    ? document.addEventListener("DOMContentLoaded", applyToCTAs)
-    : applyToCTAs();
-
+  applyToCTAs();
 })();
-</script>
-</body>
-</html>
