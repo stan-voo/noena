@@ -303,7 +303,7 @@
                         </div>
                     </div>
     
-                    <a href="https://wa.me/905303407443?text=Merhaba%20–%20NOENA30%20indiriminden%20yararlanmak%20istiyorum&utm_source=site&utm_medium=cta&utm_campaign=launch_offer" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;">WhatsApp’ta Randevu Al</a>
+                    <a id="wa-cta" data-role="whatsapp-cta" href="#" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;" aria-label="WhatsApp’tan randevu al">WhatsApp’ta Randevu Al</a>
                     <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Haftada <strong>6 promosyon randevusu</strong> — yerler dolmadan ayırtın.</p>                </div>
             </div>
         </section>
@@ -415,7 +415,7 @@
                 <h2 class="text-center mb-6 h2-style">Fiyat Listesi</h2>
                 <p>
      Hazır değil misiniz?
-     <a href="https://wa.me/905303407443?text=Merhaba%20Noena%2C%20fiyat%20listesi%20PDF%E2%80%99sini%20payla%C5%9F%C4%B1r%20m%C4%B1s%C4%B1n%C4%B1z%3F&utm_source=site&utm_medium=cta&utm_campaign=price_pdf" class="underline underline-offset-2 hover:opacity-80" aria-label="WhatsApp — fiyat listesi PDF iste" data-evt="price_pdf_click" style="color: var(--color-text);">
+     <a data-role="whatsapp-cta" href="#" class="underline underline-offset-2 hover:opacity-80" aria-label="WhatsApp — fiyat listesi PDF iste" data-evt="price_pdf_click" style="color: var(--color-text);">
        WhatsApp’tan fiyat listesi PDF isteyin.
      </a>
    </p>
@@ -440,5 +440,90 @@
             <p class="mt-6">&copy; 2025 NOENA EPİLASYON VE GÜZELLİK MERKEZİ LİMİTED ŞİRKETİ</p>
         </footer>
     </main>
+<script>
+(function () {
+  const PHONE_TR = "905303407443"; // WhatsApp phone (no '+')
+
+  // 1) Read UTMs from URL
+  const urlUTM = (() => {
+    const p = new URLSearchParams(window.location.search);
+    const keys = ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","fbclid","msclkid","ref"];
+    const obj = {};
+    keys.forEach(k => { const v = p.get(k); if (v) obj[k] = v; });
+    return obj;
+  })();
+
+  // 2) Persist to sessionStorage (first hit wins for the session)
+  const KEY = "noena_utm";
+  const stored = sessionStorage.getItem(KEY);
+  if (!stored || Object.keys(JSON.parse(stored)).length === 0) {
+    if (Object.keys(urlUTM).length) {
+      sessionStorage.setItem(KEY, JSON.stringify(urlUTM));
+    }
+  }
+
+  // 3) Get best-available UTM bundle
+  function getUTM() {
+    try {
+      const current = urlUTM;
+      const saved = JSON.parse(sessionStorage.getItem(KEY) || "{}");
+      return Object.keys(current).length ? current : saved;
+    } catch (_) { return {}; }
+  }
+
+  // 4) Build a Turkish prefilled message that embeds UTMs
+  function buildMessage(utm) {
+    // Core message (TR)
+    let msg = "Merhaba Noena, randevu ve fiyat bilgisi rica ederim. ";
+    msg += "Konu: Koltukaltı ilk seans %30 indirim.";
+
+    // Append UTMs if present so team sees source on WhatsApp
+    const parts = [];
+    if (utm.utm_source) parts.push(`kaynak=${utm.utm_source}`);
+    if (utm.utm_medium) parts.push(`medium=${utm.utm_medium}`);
+    if (utm.utm_campaign) parts.push(`kampanya=${utm.utm_campaign}`);
+    if (utm.utm_content) parts.push(`icerik=${utm.utm_content}`);
+    if (utm.utm_term) parts.push(`terim=${utm.utm_term}`);
+    if (utm.gclid) parts.push(`gclid=${utm.gclid}`);
+    if (utm.fbclid) parts.push(`fbclid=${utm.fbclid}`);
+    if (utm.msclkid) parts.push(`msclkid=${utm.msclkid}`);
+    if (utm.ref) parts.push(`ref=${utm.ref}`);
+
+    if (parts.length) {
+      msg += " [UTM: " + parts.join(" | ") + "]";
+    }
+
+    // Optional: include current path for context
+    msg += ` [sayfa=${location.pathname}]`;
+    return msg;
+  }
+
+  // 5) Create wa.me URL with encoded message
+  function buildWaLink(phone, text) {
+    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  }
+
+  // 6) Apply to any CTA(s)
+  function applyToCTAs() {
+    const utm = getUTM();
+    const text = buildMessage(utm);
+    const href = buildWaLink(PHONE_TR, text);
+
+    // All elements with role
+    const anchors = document.querySelectorAll('[data-role="whatsapp-cta"]');
+    anchors.forEach(a => {
+      a.setAttribute("href", href);
+      a.setAttribute("rel", "noopener");
+      a.setAttribute("target", "_blank"); // optional: open in new tab
+    });
+  }
+
+  // Init
+  document.readyState === "loading"
+    ? document.addEventListener("DOMContentLoaded", applyToCTAs)
+    : applyToCTAs();
+
+})();
+</script>
 </body>
 </html>
