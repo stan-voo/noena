@@ -536,6 +536,10 @@
     });
   }
 
-  // Init
-  applyToCTAs();
+  // Init: Wait for the DOM to be ready before changing links.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyToCTAs);
+  } else {
+    applyToCTAs();
+  }
 })();
