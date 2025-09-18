@@ -303,7 +303,7 @@
                         </div>
                     </div>
     
-                    <a id="wa-cta" data-role="whatsapp-cta" data-whatsapp-context="appointment" href="#" onclick="fbq('track', 'Contact');" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;" aria-label="WhatsApp’tan randevu al">WhatsApp’ta Randevu Al</a>
+                    <a id="wa-cta" data-role="whatsapp-cta" data-whatsapp-context="appointment" href="#" onclick="try{ window.fbq && fbq('track','Contact') }catch(e){}" class="block w-full text-center text-white uppercase" style="height: 52px; line-height: 52px; border-radius: 14px; background-color: #25D366; font-size: clamp(17px, 5vw, 18px); letter-spacing: 0.01em; font-weight: 600;" aria-label="WhatsApp’tan randevu al">WhatsApp’ta Randevu Al</a>
                     <p class="text-center text-micro mt-3" style="color: rgba(255,255,255,0.8);">Haftada <strong>6 promosyon randevusu</strong> — yerler dolmadan ayırtın.</p>                </div>
             </div>
         </section>
@@ -523,6 +523,11 @@
   // 6) Apply to any CTA(s)
   function applyToCTAs() {
     const utm = getUTM();
+
+    // Trim long click IDs to avoid issues with long URLs
+    if (utm.gclid && utm.gclid.length > 64) utm.gclid = utm.gclid.slice(0, 64);
+    if (utm.fbclid && utm.fbclid.length > 64) utm.fbclid = utm.fbclid.slice(0, 64);
+    if (utm.msclkid && utm.msclkid.length > 64) utm.msclkid = utm.msclkid.slice(0, 64);
 
     // All elements with role
     const anchors = document.querySelectorAll('[data-role="whatsapp-cta"]');
